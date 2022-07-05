@@ -1,0 +1,86 @@
+
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color: #5DC6BF; /*replace with your color*/
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: rgb(172, 172, 172);  
+}
+
+
+.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+    /* border: 2px solid yellow; */
+}  
+
+.flex-child:first-child {
+    margin-right: 20px;
+} 
+
+.flex-container {
+    display: flex;
+}
+
+
+.plan-features{
+    flex: 4;
+    padding-block: 15px;
+    border-bottom: 1px solid #ddd;
+}
+.plan-col{
+    text-align: center;
+    flex: 3;
+    padding-block: 15px;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+
+
+.plan-features-btn{
+    flex: 4;
+    padding-block: 20px;
+}
+.plan-col-btn{
+    text-align: center;
+    flex: 3;
+    padding-block: 20px;
+    border-left: 1px solid #ddd;
+}
+
+
+
+.plan-title-features{
+    flex: 4;
+    padding-block: 10px;
+}
+.plan-title-col{
+    text-align: center;
+    flex: 3;
+    padding-block: 10px;
+}
+
+.plan-btn{
+    padding-block: 2px; 
+    padding-inline:30px; 
+    background:linear-gradient(180deg, #2C68DE 0%, #022D7E 100%); 
+    color: #fff; 
+    border-radius: 8px;
+}
+
+.customplantitle.mat-card{
+    border-radius: 12px;
+    padding: 5px;
+}
+
+
+
+.customplanfeatures.mat-card{
+    border-radius: 12px;
+    margin-top: 20px;
+    padding: 0px;
+}

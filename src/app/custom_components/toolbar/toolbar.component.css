@@ -1,0 +1,13 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.btn-default {
+    width: 100px;
+}
+
+
+.btn-custom1 {
+    background: #1E4591;
+    color: #fff;
+}

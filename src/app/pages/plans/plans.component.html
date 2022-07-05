@@ -1,0 +1,155 @@
+
+<app-toolbar></app-toolbar>
+<section style="padding: 100px; background:#103479; text-align: center;">
+    <p style=" font-size: 40px; color: #fff;">
+        Get ready for the future
+    </p>
+</section>
+<section style="padding-top: 50px; padding-bottom: 100px; padding-inline: 20px; background:#f9f9f9;">
+    <div style="text-align: center;">
+        <p style="font-size: 35px;">Features</p>
+        <p style="color: #444;">Explore the plans and features</p>
+    </div>
+
+    <div style="width: min-content; margin: auto;">
+        <mat-slide-toggle [(ngModel)]="isAnnually" (click)="toggleBilling()"  >{{billingcycle}} </mat-slide-toggle> 
+    </div>
+    <div style="height: 30px;">
+        
+    </div>
+
+    <!-- TABLE -->
+    <section style="max-width:950px; margin: auto;">
+        <mat-card class="customplantitle">
+
+            <div class="flex-container">
+                <div class="plan-title-features">
+                </div>
+                <div class="plan-title-col">
+                    <div style="text-align: center;">
+                        <span class="plan-title-text">Basic</span>
+                        <div class="plan-subtitle">{{currency+BasicPrice+'/mon'}}</div>
+                    </div>
+                </div>
+                <div class="plan-title-col">
+                    <div style="text-align: center;">
+                        <span class="plan-title-text">Silver</span>
+                        <div class="plan-subtitle">{{currency+SilverPrice+'/mon'}}</div>
+                    </div>
+                </div>
+            </div>
+           
+        </mat-card>
+
+        <mat-card class="customplanfeatures">
+
+        <div *ngFor="let data of FeaturesList">
+            <div class="flex-container">
+                <div class=" plan-features">
+                    <div style="padding: 10px;">
+                        Flex Column 1
+                    </div>
+                </div>
+                <div class="plan-col">
+                    <mat-icon style="color:#5DC6BF;">check</mat-icon>
+                </div>
+                <div class="plan-col">
+                    <mat-icon style="color:#5DC6BF">check</mat-icon>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex-container">
+            <div class="plan-features-btn">
+                
+            </div>
+            <div class="plan-col-btn">
+                <div style="font-size: 25px; font-weight:bold; margin-top: 10px;">
+                    {{currency}}40 <span style="font-size: 13px; font-weight:lighter">/mon</span>
+                </div>
+                <div style="margin: 10px;">
+                    <button mat-button class="plan-btn" routerLink="/getstarted/Basic">Get Started</button>
+                </div>            
+            </div>
+            <div class="plan-col-btn">
+                <div style="font-size: 25px; font-weight:bold; margin-top: 10px;">
+                    {{currency}}90 <span style="font-size: 13px; font-weight:lighter">/mon</span>
+                </div>
+                <div style="margin: 10px;">
+                    <button mat-button class="plan-btn" routerLink="/getstarted/Silver">Get Started</button>
+                </div>  
+            </div>
+        </div>
+
+        </mat-card>
+    </section>
+
+</section>
+
+<section style="padding-block: 100px; padding: inline 20px; background: #fff;">
+
+    <section style="max-width:950px; margin: auto;">
+       
+        <div class="flex-container">
+
+            <div class="flex-child">
+                <div style="margin-right: 20px;">
+                    <img src="../../../assets/pricingimg1.png" alt="" style="max-width: 400px;">
+                </div>
+            </div>
+            
+            <div class="flex-child">
+                <div style="font-size: 30px; line-height: 45px; top: 10px;">
+                    Accept payments quickly and securely with Biz Edge Payments.
+                </div>
+                <div style="padding-block: 15px;">
+                    <button mat-button style="color:#049086; background: #f5f5f5;">Learn More</button>
+                </div>
+            </div>
+            
+          </div>
+
+    </section>
+    
+
+</section>
+
+
+<section style="padding-block: 100px; padding: inline 20px; background: #f3f3f3;">
+
+    <section style="max-width:950px; margin: auto;">
+       
+        <div class="flex-container">
+
+            <div class="flex-child">
+                <div style="font-size: 30px; line-height: 45px;">
+                    Hardware Addons 
+                </div>
+                <div>
+                    Ours is designed to have a big impact on the way you work. Not your wallet. Start from scratch or complete your existing set with our top-quality gear tailored to your needs.
+                </div>
+
+                <div style="padding-block: 15px;">
+                    <button mat-button style="color:#049086; border: 1px solid #aaa;">Learn More</button>
+                </div>
+                
+            </div>
+            
+            <div class="flex-child">
+                <div style="margin-right: 20px;">
+                    <img src="../../../assets/pricingimg2.png" alt="" style="max-width: 400px;">
+                </div>
+            </div>
+            
+          </div>
+
+    </section>
+    
+
+</section>
+
+<section style="position: relative;
+bottom: 0px; width: 100%;">
+<app-largefooter></app-largefooter>
+<app-customfooter></app-customfooter>
+</section>

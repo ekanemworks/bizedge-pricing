@@ -1,0 +1,553 @@
+<app-toolbar></app-toolbar>
+
+<section style="padding-block: 50px; padding: inline 20px;">
+
+    <section style=" margin: auto;">
+       
+        <div class="flex-container">
+
+            <div class="flex-child gs-first" style=" vertical-align: middle;  display: table-cell;">
+                <div style="margin-top: 10%;  
+                ">
+
+                    <div style=" text-align:left; max-width: 80%; margin: auto">
+                        <div style="padding-block: 50px;">
+                            <img src="../../../assets/logobox.png" alt="" style="width: 130px;">
+                        </div>
+
+
+                        <div style="font-size: 30px; padding-block: 10px;">
+                            Get started today
+                        </div>
+                        <div style="font-size: 20px; padding-block: 10px;">
+                            Experience how Biz Edge can help you...
+                        </div>
+
+                        <div style="padding-block: 20px;">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="def-margin">
+                                            <span><img src="../../../assets/checked.png" alt="" style="width: 23px;"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="def-margin">
+                                            <div style="font-size: 19px; color: #555;">Get staff up & running with minimal training</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="def-margin">
+                                            <span><img src="../../../assets/checked.png" alt="" style="width: 23px;"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="def-margin">
+                                            <div style="font-size: 19px; color: #555;">Effectively manage stock</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="def-margin">
+                                            <span><img src="../../../assets/checked.png" alt="" style="width: 23px;"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="def-margin">
+                                            <div style="font-size: 19px; color: #555;">Quickly & easily make sales</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="def-margin">
+                                            <span><img src="../../../assets/checked.png" alt="" style="width: 23px;"></span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="def-margin">
+                                            <div style="font-size: 19px; color: #555;">Work seamlessly with all of your systems</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+            <div class="gs-mid">
+
+            </div>
+            
+            <div class="flex-child gs-second">
+                <div style="max-width: 500px; margin:auto; ">
+                    <mat-card style="padding: 20; border-radius: 40px; height: 750px; ">
+
+                        <DIV id="wizard" *ngIf="gswizarddisplay == true">
+
+                            <div style="text-align: center; padding-top: 10px; padding-bottom: 40px;">
+                                <div style="font-weight: bold; font-size:15px; margin-bottom: 10px; color: #888;">
+                                    {{choosenPlan}}
+                                </div>
+                                <div style="font-size: 30px;">
+                                    $90 <span style="font-size: 13px;">monthly per till</span>
+                                </div>
+                            </div>
+
+
+
+                            <mat-stepper>
+                                <mat-step label="Step 1" state="phone">
+                                    <!-- CONTENT OF WIZARD STEPPER  1-->
+                                    <!-- CONTENT OF WIZARD STEPPER  1-->
+                                    <div style="height: 500px; ">
+
+                                        <div style="font-size: 20px; font-weight:bold; padding-top: 50px; padding-bottom: 20px;">
+                                            Business Option
+                                        </div>
+                                        <form [formGroup]="signupForm">
+                                            <div>
+                                                <mat-form-field  appearance="outline">
+                                                    <mat-label>Industry</mat-label>
+                                                    <mat-select name="city" formControlName="city" >
+                                                        <div *ngFor="let data of industry">
+                                                        <mat-option value="{{data}}">{{data}}</mat-option>
+                                                    </div>
+                                                    </mat-select>
+                                                </mat-form-field>
+
+
+                                                <mat-form-field  appearance="outline">
+                                                    <mat-label>Business Type</mat-label>
+                                                    <mat-select name="city" formControlName="city" >
+                                                        <div *ngFor="let data of industry">
+                                                        <mat-option value="{{data}}">{{data}}</mat-option>
+                                                    </div>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- END:: CONTENT OF WIZARD STEPPER 1-->
+                                    <!-- END:: CONTENT OF WIZARD STEPPER 1-->
+                                    <div>
+                                        <table>
+                                            <tr>
+                                                <td style="width: 1000px;"></td>
+                                                <td style="width: 1000px;">
+                                                    <div style="float: right;">
+                                                        <button mat-button matStepperNext class="continue-btn">Continue</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </mat-step>
+                                
+
+
+
+
+
+                                <mat-step label="Step 2" state="chat">
+                                    <!-- CONTENT OF WIZARD STEPPER  2-->
+                                    <!-- CONTENT OF WIZARD STEPPER  2-->
+                                    <div style="height: 500px; ">
+
+                                        <div style="font-size: 20px; font-weight:bold; padding-top: 50px; padding-bottom: 20px;">
+                                            Locations & Tills
+                                        </div>
+                                        <form [formGroup]="signupForm">
+                                            <div>
+                                                <mat-form-field  appearance="outline">
+                                                    <mat-label>Number of Locations</mat-label>
+                                                    <mat-select name="city" formControlName="city" >
+                                                        <div *ngFor="let data of industry">
+                                                        <mat-option value="{{data}}">{{data}}</mat-option>
+                                                    </div>
+                                                    </mat-select>
+                                                </mat-form-field>
+
+
+                                                <mat-form-field  appearance="outline">
+                                                    <mat-label>Number of Tills</mat-label>
+                                                    <mat-select name="city" formControlName="city" >
+                                                        <div *ngFor="let data of industry">
+                                                        <mat-option value="{{data}}">{{data}}</mat-option>
+                                                    </div>
+                                                    </mat-select>
+                                                </mat-form-field>
+
+                                                <mat-form-field  appearance="outline">
+                                                    <mat-label>Billing Cycle</mat-label>
+                                                    <mat-select name="city" formControlName="city" >
+                                                        <div *ngFor="let data of industry">
+                                                        <mat-option value="{{data}}">{{data}}</mat-option>
+                                                    </div>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- END:: CONTENT OF WIZARD STEPPER 2-->
+                                    <!-- END:: CONTENT OF WIZARD STEPPER 2-->
+                                    <div>
+                                        <table>
+                                            <tr>
+                                                <td style="width: 1000px;">
+                                                    <div>
+                                                        <button mat-button matStepperPrevious  class="back-btn"><mat-icon>keyboard_backspace</mat-icon> Back</button>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 1000px;">
+                                                    <div style="float: right;">
+                                                        <button mat-button matStepperNext class="continue-btn">Next</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </mat-step>
+
+
+
+
+
+
+                                <mat-step label="Step 3">
+
+                                    <!-- CONTENT OF WIZARD STEPPER  3-->
+                                    <!-- CONTENT OF WIZARD STEPPER  3-->
+                                    <div style="height: 500px;  overflow-y: scroll;">
+
+                                        <div style="font-size: 20px; font-weight:bold; padding-top: 50px; padding-bottom: 20px;">
+                                            Company Info
+                                        </div>
+                                        <form [formGroup]="signupForm">
+                                            <div>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Business Name</mat-label>
+                                                    <input matInput type="text" formControlName="luxurycode" placeholder="">
+                                                </mat-form-field>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Email Address</mat-label>
+                                                    <input matInput type="text" formControlName="luxurycode" placeholder="">
+                                                </mat-form-field>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Website</mat-label>
+                                                    <input matInput type="text" formControlName="luxurycode" placeholder="">
+                                                </mat-form-field>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Address</mat-label>
+                                                    <input matInput type="text" formControlName="luxurycode" placeholder="">
+                                                </mat-form-field>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Additional Information</mat-label>
+                                                    <input matInput type="text" formControlName="luxurycode" placeholder="">
+                                                </mat-form-field>
+
+                                                <mat-form-field  appearance="outline">
+                                                    <mat-label>Country</mat-label>
+                                                    <mat-select name="city" formControlName="city" >
+                                                        <div *ngFor="let data of industry">
+                                                        <mat-option value="{{data}}">{{data}}</mat-option>
+                                                    </div>
+                                                    </mat-select>
+                                                </mat-form-field>
+
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <mat-form-field appearance="outline">
+                                                                <mat-label>Additional Information</mat-label>
+                                                                <input matInput type="text" formControlName="luxurycode" placeholder="">
+                                                            </mat-form-field>
+                                                        </td>
+                                                        <td>
+                                                            <mat-form-field  appearance="outline">
+                                                                <mat-label>Billing Cycle</mat-label>
+                                                                <mat-select name="city" formControlName="city" >
+                                                                    <div *ngFor="let data of industry">
+                                                                    <mat-option value="{{data}}">{{data}}</mat-option>
+                                                                </div>
+                                                                </mat-select>
+                                                            </mat-form-field>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                    <!-- END:: CONTENT OF WIZARD STEPPER 3-->
+                                    <!-- END:: CONTENT OF WIZARD STEPPER 3-->
+                                    <div>
+                                        <table>
+                                            <tr>
+                                                <td style="width: 1000px;">
+                                                    <div>
+                                                        <button mat-button matStepperPrevious  class="back-btn"><mat-icon>keyboard_backspace</mat-icon> Back</button>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 1000px;">
+                                                    <div style="float: right;">
+                                                        <button mat-button matStepperNext class="continue-btn">Next</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+
+                                    
+                                </mat-step>
+
+
+
+
+
+
+                                <mat-step label="Step 4">
+                                    <!-- CONTENT OF WIZARD STEPPER  3-->
+                                    <!-- CONTENT OF WIZARD STEPPER  3-->
+                                    <div style="height: 500px;  overflow-y: scroll;">
+
+                                        <div style="font-size: 20px; font-weight:bold; padding-top: 50px; padding-bottom: 20px;">
+                                            Company Info
+                                        </div>
+                                        <form [formGroup]="signupForm">
+                                            <div>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>First Name</mat-label>
+                                                    <input matInput type="text" formControlName="luxurycode" placeholder="">
+                                                </mat-form-field>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Last Name</mat-label>
+                                                    <input matInput type="text" formControlName="luxurycode" placeholder="">
+                                                </mat-form-field>
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <mat-form-field appearance="outline" style="width: 100px;">
+                                                                <mat-select name="city" formControlName="city" value="+234" >
+                                                                    <div *ngFor="let data of countrycode">
+                                                                        <mat-option value="{{data}}">{{data}}</mat-option>
+                                                                    </div>
+                                                                </mat-select>
+                                                            </mat-form-field>
+                                                        </td>
+                                                        <td style="width: 100%;">
+                                                            <mat-form-field appearance="outline">
+                                                                <mat-label>Phone number</mat-label>
+                                                                <input matInput type="text" formControlName="luxurycode" placeholder="">
+                                                            </mat-form-field>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Email Address</mat-label>
+                                                    <input matInput type="text" formControlName="luxurycode" placeholder="">
+                                                </mat-form-field>
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Password</mat-label>
+                                                    <input matInput type="text" formControlName="luxurycode" placeholder="">
+                                                </mat-form-field>
+
+
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                    <!-- END:: CONTENT OF WIZARD STEPPER 3-->
+                                    <!-- END:: CONTENT OF WIZARD STEPPER 3-->
+                                    <div>
+                                        <table>
+                                            <tr>
+                                                <td style="width: 1000px;">
+                                                    <div>
+                                                        <button mat-button matStepperPrevious  class="back-btn"><mat-icon>keyboard_backspace</mat-icon> Back</button>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 1000px;">
+                                                    <div style="float: right;">
+                                                        <button mat-button (click)="checkout()" class="continue-btn">Check out</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                    
+                                </mat-step>
+                                
+                                <!-- Icon overrides. -->
+                                <!-- <ng-template matStepperIcon="phone">
+                                    <mat-icon>call_end</mat-icon>
+                                </ng-template>
+                                <ng-template matStepperIcon="chat">
+                                    <mat-icon>forum</mat-icon>
+                                </ng-template> -->
+                                <ng-template matStepLabel>
+                                    <div class="stepper-label"> Name of the label </div>
+                                </ng-template>
+                            </mat-stepper>
+                        </DIV>
+
+                        <DIV id="summary" style=" height: 700px;" *ngIf="gswizarddisplay == false">
+                            <div class="def-margin-large" style="text-align: center; font-weight:bold;">
+                                Summary
+                            </div>
+
+                            <section class="def-margin-large">
+                                <div  style="font-weight: bold;">
+                                    Business
+                                </div>
+                                <div style="padding: 10px; border-radius:9px; background: #f5f5f5;">
+                                    <div>
+                                        name
+                                    </div>
+                                    <div>
+                                        Address
+                                    </div>
+                                    <div>
+                                        phone no
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="def-margin-large">
+                                <div  style="font-weight: bold;">
+                                    Selected Features
+                                </div>
+                                <div style="padding: 10px;">
+                                    <table>
+                                        <tr>
+                                            <td style="width: 1000px;">
+                                                <div>
+                                                    Plan
+                                                </div>
+                                            </td>
+                                            <td style="width: 1000px;">
+                                                <div style="float: right;">
+                                                    ddd
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 1000px;">
+                                                <div>
+                                                    Rate
+                                                </div>
+                                            </td>
+                                            <td style="width: 1000px;">
+                                                <div style="float: right;">
+                                                    ddd
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 1000px;">
+                                                <div>
+                                                    Tills Added
+                                                </div>
+                                            </td>
+                                            <td style="width: 1000px;">
+                                                <div style="float: right;">
+                                                    ddd
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 1000px;">
+                                                <div>
+                                                    Billing Cycle
+                                                </div>
+                                            </td>
+                                            <td style="width: 1000px;">
+                                                <div style="float: right;">
+                                                    ddd
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 1000px;">
+                                                <div>
+                                                    Months
+                                                </div>
+                                            </td>
+                                            <td style="width: 1000px;">
+                                                <div style="float: right;">
+                                                    ddd
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </section>
+
+                            <section>
+                                <div  style="font-weight: bold;">
+                                    Card Accepted
+                                </div>
+                                <div>                            
+                                    <img src="../../../assets/mastercard.png" alt="" style="width: 50px;">
+                                    <img src="../../../assets/visa.png" alt="" style="width: 50px;">
+                                </div>
+                            </section>
+
+
+                            <section style="text-align: right;">
+                                <div style="font-weight: bold; font-size:15px">
+                                    Pay
+                                </div>
+                                <div style="height: 2px; background: #235CC9; width: 80px; margin-left: 80%;"></div>
+                                <div style="font-size: 19px; font-weight:bold; margin-top:10px">
+                                   $ 900 <span style="font-size: 12px; font-weight: normal">/Mon</span>
+                                </div>
+                            </section>
+
+                            <div style="position: relative;
+                            bottom: 0px; width: 100%; margin-top: 40%;">
+                                <table>
+                                    <tr>
+                                        <td style="width: 1000px;">
+                                            <div>
+                                                <button mat-button (click)="backtoWizard()" class="back-btn"><mat-icon>keyboard_backspace</mat-icon> Back</button>
+                                            </div>
+                                        </td>
+                                        <td style="width: 1000px;">
+                                            <div style="float: right;">
+                                                <button mat-button (click)="pay()" class="continue-btn">Pay</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+                        </DIV>
+
+                        
+
+                    </mat-card>
+                </div>
+
+            </div>
+            
+          </div>
+
+    </section>
+    
+
+</section>
+<section style="position: relative;
+bottom: 0px; width: 100%;">
+<app-smallfooter></app-smallfooter>
+</section>
