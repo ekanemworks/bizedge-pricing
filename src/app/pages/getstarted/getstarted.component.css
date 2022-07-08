@@ -9,18 +9,11 @@
 } 
 
 .gs-first{
-    flex: 3;
-}
-.gs-mid{
-    flex: 2;
+    flex: 4;
 }
 .gs-second{
     flex: 3;
 }
-
-.flex-child:first-child {
-    margin-right: 20px;
-} 
 
 /* ::ng-deep .mat-step-header .mat-step-icon-selected {
     background-color: red; 
@@ -58,4 +51,33 @@ mat-form-field {
   .back-btn{
     border-radius: 10px; width: 100px; padding: 5px; color: #555;
     border: 1px solid #ddd;
+  }
+
+  .indicator-point{
+    width: 30px; padding-block: 4px; border: 1px solid #00A69C; border-radius: 50%; text-align: center; color: #00A69C;
+    font-weight: bold;
+
+  }
+
+  .indicator-connector{
+    width: 30px; height: 1px; background: #ddd; margin-bottom: 3px; text-align: center;
+  }
+
+
+  .indicator-point-active{
+    width: 30px; padding-block: 4px; border: 1px solid #00A69C; border-radius: 50%; text-align: center;
+    background: #00A69C;
+    font-weight: bold;
+    color: #fff;
+  }
+  .indicator-connector{
+    width: 30px; height: 1px; background: #00A69C; margin-bottom: 3px; text-align: center;
+  }
+
+  .wizard-step-input-margin{
+    margin-inline: 20px;
+  }
+
+  .wizard-step-btn-margin{
+    margin: 20px;
   }

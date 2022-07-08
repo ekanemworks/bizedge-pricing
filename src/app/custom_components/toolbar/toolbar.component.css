@@ -11,3 +11,12 @@
     background: #1E4591;
     color: #fff;
 }
+.img-style-2{
+    margin-top: 10px;
+    background: #fff;
+    width: 25px; 
+    border: 1px solid rgb(233, 233, 233); 
+    padding-inline: 10px; 
+    padding-block: 5px; 
+    border-radius: 8px;
+}
