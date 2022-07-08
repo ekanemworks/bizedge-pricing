@@ -1,7 +1,7 @@
 
 <app-toolbar></app-toolbar>
 <section style="padding: 100px; background:#103479; text-align: center;">
-    <p style=" font-size: 40px; color: #fff;">
+    <p style=" font-size: 40px; color: #fff; line-height: 45px;">
         Get ready for the future
     </p>
 </section>
@@ -24,6 +24,10 @@
 
             <div class="flex-container">
                 <div class="plan-title-features">
+                    <div style="text-align: center; padding-top: 10px; color: #000; font-weight: bold;">
+                    Features                        
+                    <div class="plan-subtitle"></div>
+                    </div>
                 </div>
                 <div class="plan-title-col">
                     <div style="text-align: center;">
@@ -65,18 +69,18 @@
             </div>
             <div class="plan-col-btn">
                 <div style="font-size: 25px; font-weight:bold; margin-top: 10px;">
-                    {{currency}}40 <span style="font-size: 13px; font-weight:lighter">/mon</span>
+                    {{currency+BasicPrice}} <span style="font-size: 13px; font-weight:lighter">/mon</span>
                 </div>
                 <div style="margin: 10px;">
-                    <button mat-button class="plan-btn" routerLink="/getstarted/Basic">Get Started</button>
+                    <button mat-button class="plan-btn" routerLink="/getstarted/Basic/0">Get Started</button>
                 </div>            
             </div>
             <div class="plan-col-btn">
                 <div style="font-size: 25px; font-weight:bold; margin-top: 10px;">
-                    {{currency}}90 <span style="font-size: 13px; font-weight:lighter">/mon</span>
+                    {{currency+SilverPrice}} <span style="font-size: 13px; font-weight:lighter">/mon</span>
                 </div>
                 <div style="margin: 10px;">
-                    <button mat-button class="plan-btn" routerLink="/getstarted/Silver">Get Started</button>
+                    <button mat-button class="plan-btn" routerLink="/getstarted/Silver/0">Get Started</button>
                 </div>  
             </div>
         </div>
@@ -86,19 +90,19 @@
 
 </section>
 
-<section style="padding-block: 100px; padding: inline 20px; background: #fff;">
+<section style="padding-block: 100px; padding: inline 20px; background: #fff;"  (window:resize)="ResizePage()">
 
     <section style="max-width:950px; margin: auto;">
        
-        <div class="flex-container">
+        <div [class]="flexcontainer">
 
-            <div class="flex-child">
+            <div class="flex-child" style="text-align: center;">
                 <div style="margin-right: 20px;">
                     <img src="../../../assets/pricingimg1.png" alt="" style="max-width: 400px;">
                 </div>
             </div>
             
-            <div class="flex-child">
+            <div class="flex-child" style="text-align: center;">
                 <div style="font-size: 30px; line-height: 45px; top: 10px;">
                     Accept payments quickly and securely with Biz Edge Payments.
                 </div>
@@ -107,7 +111,7 @@
                 </div>
             </div>
             
-          </div>
+        </div>
 
     </section>
     
@@ -119,9 +123,9 @@
 
     <section style="max-width:950px; margin: auto;">
        
-        <div class="flex-container">
+        <div [class]="flexcontainer">
 
-            <div class="flex-child">
+            <div class="flex-child" style="text-align: center;">
                 <div style="font-size: 30px; line-height: 45px;">
                     Hardware Addons 
                 </div>
@@ -135,7 +139,7 @@
                 
             </div>
             
-            <div class="flex-child">
+            <div class="flex-child" style="text-align: center;">
                 <div style="margin-right: 20px;">
                     <img src="../../../assets/pricingimg2.png" alt="" style="max-width: 400px;">
                 </div>

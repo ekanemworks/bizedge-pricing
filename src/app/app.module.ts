@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from "./material/material.module";
 import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+
 
 // PAGES
 import { PlansComponent } from './pages/plans/plans.component';
@@ -20,6 +22,10 @@ import { PurchasesummaryComponent } from './pages/purchasesummary/purchasesummar
 import { SmallfooterComponent } from './custom_components/smallfooter/smallfooter.component';
 import { LargefooterComponent } from './custom_components/largefooter/largefooter.component';
 import { CustomfooterComponent } from './custom_components/customfooter/customfooter.component';
+import { TermsComponent } from './custom_components/terms/terms.component';
+import { TermspageComponent } from './pages/termspage/termspage.component';
+import { PrivacypageComponent } from './pages/privacypage/privacypage.component';
+import { CoolbuttonsComponent } from './custom_components/coolbuttons/coolbuttons.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +38,11 @@ import { CustomfooterComponent } from './custom_components/customfooter/customfo
     PurchasesummaryComponent,
     SmallfooterComponent,
     LargefooterComponent,
-    CustomfooterComponent
+    CustomfooterComponent,
+    TermsComponent,
+    TermspageComponent,
+    PrivacypageComponent,
+    CoolbuttonsComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +50,8 @@ import { CustomfooterComponent } from './custom_components/customfooter/customfo
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
