@@ -10,8 +10,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     
 }
 .plan-subtitle{
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
+    padding-block: 10px;
 }
 
 

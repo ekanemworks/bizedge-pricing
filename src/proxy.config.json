@@ -1,0 +1,7 @@
+{
+    "/*": {
+        "target": "https://bizedgehq.com",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

@@ -29,27 +29,31 @@
 
 .plan-features{
     flex: 4;
-    padding-block: 15px;
     border-bottom: 1px solid #ddd;
+    padding-left: 20px;
+    padding-block: 8px;
+
 }
 .plan-col{
     text-align: center;
     flex: 3;
-    padding-block: 15px;
     border-bottom: 1px solid #ddd;
     border-left: 1px solid #ddd;
+    padding-block: 8px;
 }
 
 
 .plan-features-btn{
     flex: 4;
     padding-block: 20px;
+    padding-left: 20px;
+
 }
 .plan-col-btn{
     text-align: center;
     flex: 3;
     padding-block: 20px;
-    border-left: 1px solid #ddd;
+    /* border-left: 1px solid #ddd; */
 }
 
 
@@ -69,18 +73,18 @@
     max-width: 150px;
     background:linear-gradient(180deg, #2C68DE 0%, #022D7E 100%); 
     color: #fff; 
-    border-radius: 8px;
+    /* border-radius: 8px; */
 }
 
 .customplantitle.mat-card{
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 5px;
 }
 
 
 
 .customplanfeatures.mat-card{
-    border-radius: 12px;
+    border-radius: 8px;
     margin-top: 20px;
     padding: 0px;
 }

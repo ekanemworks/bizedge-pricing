@@ -84,27 +84,46 @@
             
             <div class=" gs-second">
                 <div style="max-width: 500px; margin:auto; ">
-                    <mat-card style=" padding-inline: 0px; border-radius: 20px; min-height: 650px; padding-block: 30px; margin-inline: 20px;">
+                    <mat-card style=" padding-inline: 0px; border-radius: 10px; min-height: 650px; padding-block: 20px; margin-inline: 20px;">
 
                         <section *ngIf="gswizarddisplay == true">
 
+                            <div style="padding-inline: 20px; padding-block: 5px; margin-left: 15px; border: 1px solid #00c4b7; width:fit-content; border-radius: 30px; color: #000; margin: auto;">
+                                {{choosenPlan}} <span >Plan</span>
+                            </div>
+
                             <div *ngIf="stepView[0]== true">
                                 <div style="text-align: center; padding-top: 10px; padding-bottom: 40px;">
-                                    <div style="font-weight: bold; font-size:15px; margin-bottom: 10px; color: #888;">
-                                        {{choosenPlan}}
-                                    </div>
-                                    <div style="font-size: 30px;">
-                                        {{currency}}90 <span style="font-size: 13px;">monthly per till</span>
+                                   
+                                    <div style="font-size: 30px; align-items: center; text-align: center; width: fit-content; margin: auto;">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <div> <span style="color: #555; font-size: 17px;">{{currencySymbol}}</span>{{choosenRate | number: '1.0-0'}} </div>
+                                                </td>
+                                                <td>
+                                                    <span style="font-size: 13px;">mon/till</span>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div> 
                             </div>
                             <div *ngIf="stepView[0]!= true">
                                 <div style="text-align: center; padding-top: 10px; padding-bottom: 40px;">
-                                    <div style="font-weight: bold; font-size:15px; margin-bottom: 10px; color: #888;">
-                                        {{choosenPlan}}
-                                    </div>
-                                    <div style="font-size: 30px;">
-                                        {{currency}}90 <span style="font-size: 13px;">monthly</span>
+                                    <div style="font-size: 30px; align-items: center; text-align: center; width: fit-content; margin: auto;">
+                                        <div style="font-size: 30px; align-items: center; text-align: center; width: fit-content; margin: auto;">
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <div> <span style="color: #555; font-size: 17px;">{{currencySymbol}}</span>{{choosenRate | number: '1.0-0'}} </div>
+                                                    </td>
+                                                    <td>
+                                                        <span style="font-size: 13px;">mon/till</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div> 
                             </div>
@@ -160,9 +179,9 @@
                                         </div>
                                         <mat-form-field  appearance="outline">
                                             <mat-label>Industry</mat-label>
-                                            <mat-select name="city" formControlName="industry" >
-                                                <div *ngFor="let data of industry_options">
-                                                <mat-option value="{{data}}">{{data}}</mat-option>
+                                            <mat-select name="city" formControlName="industry" (selectionChange)="get_businesstype_function($event.value)">
+                                                <div *ngFor="let data of industry_options" >
+                                                <mat-option [value]="data['id']">{{data['name']}}</mat-option>
                                             </div>
                                             </mat-select>
                                         </mat-form-field>
@@ -170,26 +189,29 @@
 
                                         <mat-form-field  appearance="outline">
                                             <mat-label>Business Type</mat-label>
-                                            <mat-select name="city" formControlName="businesstype" >
-                                                <div *ngFor="let data of businesstype_options">
-                                                <mat-option value="{{data}}">{{data}}</mat-option>
-                                            </div>
+                                            <mat-select name="city" formControlName="businesstype"  >
+                                                <mat-option  *ngFor="let data of businesstype_options" [value]="data['id']">{{data['name']}}</mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </div>
 
                                     <div style="position: absolute; bottom: 0;" class="wizard-step-btn-margin">
+                                        
                                         <table>
                                             <tr>
-                                                <td style="width: 1000px;"></td>
+                                                <td style="width: 1000px;">
+                                                    <div>
+                                                        <button mat-button routerLink="/" class="back-btn"><mat-icon>keyboard_backspace</mat-icon> Back</button>
+                                                    </div>
+                                                </td>
                                                 <td style="width: 1000px;">
                                                     <div style="float: right;">
-                                                        <button mat-button type="submit" (click)="step1Validate()" class="continue-btn">Continue</button>
+                                                        <button mat-button type="submit"  (click)="step1Validate()" class="continue-btn">Continue</button>
                                                     </div>
                                                 </td>
                                             </tr>
                                         </table>
-                                        <app-terms></app-terms>
+                                        <app-termsbottomtext></app-termsbottomtext>
                                     </div>
                                 </form>
                             </div>
@@ -216,18 +238,9 @@
 
                                         <mat-form-field  appearance="outline">
                                             <mat-label>Number of Tills</mat-label>
-                                            <mat-select name="city" formControlName="tills" >
+                                            <mat-select name="city" formControlName="tills" (selectionChange)="re_calculatepriceWithTill($event.value)">
                                                 <div *ngFor="let data of tills_options">
-                                                <mat-option value="{{data}}">{{data}}</mat-option>
-                                            </div>
-                                            </mat-select>
-                                        </mat-form-field>
-
-                                        <mat-form-field  appearance="outline">
-                                            <mat-label>Billing Cycle</mat-label>
-                                            <mat-select name="city" formControlName="billingcycle" >
-                                                <div *ngFor="let data of billingcycle_options">
-                                                <mat-option value="{{data}}">{{data}}</mat-option>
+                                                <mat-option [value]="data">{{data}}</mat-option>
                                             </div>
                                             </mat-select>
                                         </mat-form-field>
@@ -247,7 +260,7 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                        <app-terms></app-terms>
+                                        <app-termsbottomtext></app-termsbottomtext>
                                     </div>
                                 </form>
                             </div>
@@ -260,8 +273,11 @@
 
 
 
+
+
                             <!-- STEP 3 -->
                             <div *ngIf="stepView[2]== true">
+                                
                                 <form [formGroup]="step3Form">
                                     <div class="wizard-step-input-margin">
                                         <div style="font-size: 20px; font-weight:bold; padding-top: 50px; padding-bottom: 20px;">
@@ -273,8 +289,24 @@
                                         </mat-form-field>
                                         <mat-form-field appearance="outline">
                                             <mat-label>Business Email Address</mat-label>
-                                            <input matInput type="email" formControlName="businessemailaddress" placeholder="" ngModel email="true">
+                                            <input matInput type="email" formControlName="businessemailaddress" placeholder="" email="true">
                                         </mat-form-field>
+                                        <div class="flex-container">
+                                            <div class="phonecode-col">
+                                                <mat-form-field appearance="outline" style="width: 100px;">
+                                                    <mat-label>Code</mat-label>
+                                                    <mat-select name="phonecode" formControlName="businessphonecode" >
+                                                            <mat-option  *ngFor="let data of phonecode_options" value="{{data}}">{{data}}</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="phonenumber-col">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Phone number</mat-label>
+                                                    <input matInput type="figure" formControlName="businessphonenumber" placeholder="">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
                                         <mat-form-field appearance="outline">
                                             <mat-label>Website</mat-label>
                                             <input matInput type="text" formControlName="website" placeholder="">
@@ -287,36 +319,34 @@
                                             <mat-label>Additional Information</mat-label>
                                             <input matInput type="text" formControlName="additionalinfo" placeholder="">
                                         </mat-form-field>
-
                                         <mat-form-field  appearance="outline">
                                             <mat-label>Country</mat-label>
-                                            <mat-select name="city" formControlName="country" >
-                                                <div *ngFor="let data of country_options">
-                                                <mat-option value="{{data}}">{{data}}</mat-option>
+                                            <mat-select name="city" formControlName="businesscountry" (selectionChange)="get_state_function($event.value)">
+                                                <div *ngFor="let data of country_options" >
+                                                <mat-option [value]="data['id']">{{data['name']}}</mat-option>
                                             </div>
                                             </mat-select>
                                         </mat-form-field>
-
+                                       
                                         <table>
                                             <tr>
                                                 <td style="width: 1000px;">
                                                     <mat-form-field appearance="outline">
                                                         <mat-label>City</mat-label>
-                                                        <input matInput type="text" formControlName="city" placeholder="">
+                                                        <input matInput type="text" formControlName="businesscity" placeholder="">
                                                     </mat-form-field>
                                                 </td>
                                                 <td style="width: 1000px;">
                                                     <mat-form-field  appearance="outline">
                                                         <mat-label>State</mat-label>
-                                                        <mat-select name="city" formControlName="state" >
-                                                            <div *ngFor="let data of state_options">
-                                                            <mat-option value="{{data}}">{{data}}</mat-option>
-                                                        </div>
+                                                        <mat-select name="city" formControlName="businessstate" >
+                                                            <mat-option *ngFor="let data of state_options" [value]="data['id']">{{data['name']}}</mat-option>
                                                         </mat-select>
                                                     </mat-form-field>
                                                 </td>
                                             </tr>
                                         </table>
+                                      
 
 
                                     </div>
@@ -330,15 +360,14 @@
                                                 </td>
                                                 <td style="width: 1000px;">
                                                     <div style="float: right;">
-                                                        <button mat-button type="submit" (click)="step3Validate()" class="continue-btn">Continue</button>
+                                                        <button mat-button type="submit"  (click)="step3Validate()" class="continue-btn">Continue</button>
                                                     </div>
                                                 </td>
                                             </tr>
                                         </table>
-                                        <app-terms></app-terms>
+                                        <app-termsbottomtext></app-termsbottomtext>
                                     </div>
                                 </form>
-
                             </div>
                             <!-- END:  STEP 3 -->
 
@@ -347,8 +376,11 @@
 
 
 
-                             <!-- STEP 4 -->
-                             <div *ngIf="stepView[3]== true">
+
+
+
+                            <!-- STEP 4 -->
+                            <div *ngIf="stepView[3]== true">
                                 
 
 
@@ -366,33 +398,35 @@
                                             <mat-label>Last Name</mat-label>
                                             <input matInput type="text" formControlName="lastname" placeholder="">
                                         </mat-form-field>
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    <mat-form-field appearance="outline" style="width: 100px;">
-                                                        <mat-label>Code</mat-label>
-                                                        <mat-select name="city" formControlName="code" value="+234" >
-                                                            <div *ngFor="let data of countrycode_options">
-                                                                <mat-option value="{{data}}">{{data}}</mat-option>
-                                                            </div>
-                                                        </mat-select>
-                                                    </mat-form-field>
-                                                </td>
-                                                <td style="width: 100%;">
-                                                    <mat-form-field appearance="outline">
-                                                        <mat-label>Phone number</mat-label>
-                                                        <input matInput type="figure" formControlName="phonenumber" placeholder="">
-                                                    </mat-form-field>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        <div>
+
+                                        </div>
+                                        <div class="flex-container">
+                                            <div class="phonecode-col">
+                                                <mat-form-field appearance="outline" style="width: 100px;">
+                                                    <mat-label>Code</mat-label>
+                                                    <mat-select name="city" formControlName="phonecode" >
+                                                        <div *ngFor="let data of phonecode_options">
+                                                            <mat-option value="{{data}}">{{data}}</mat-option>
+                                                        </div>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="phonenumber-col">
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Phone number</mat-label>
+                                                    <input matInput type="figure" formControlName="phonenumber" placeholder="">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
                                         <mat-form-field appearance="outline">
                                             <mat-label>Email Address</mat-label>
-                                            <input matInput type="email" formControlName="personalemailaddress" placeholder="" ngModel email="true">
+                                            <input matInput type="email" formControlName="personalemailaddress" placeholder="" email="true">
                                         </mat-form-field>
                                         <mat-form-field appearance="outline">
                                             <mat-label>Password</mat-label>
-                                            <input matInput type="password" formControlName="password" placeholder="">
+                                            <input matInput [type]="hidePasswordBool" formControlName="password" placeholder="">
+                                            <mat-icon matSuffix (click)="hidepass()" style="cursor: pointer;">remove_red_eye</mat-icon>
                                         </mat-form-field>
 
 
@@ -407,15 +441,14 @@
                                                 </td>
                                                 <td style="width: 1000px;">
                                                     <div style="float: right;">
-                                                        <button mat-button type="submit"  (click)="step4Validate()" class="continue-btn">Check out</button>
+                                                        <button mat-button type="submit"  (click)="step4Validate()" class="continue-btn">Continue</button>
                                                     </div>
                                                 </td>
                                             </tr>
                                         </table>
-                                        <app-terms></app-terms>
+                                        <app-termsbottomtext></app-termsbottomtext>
                                     </div>
                                 </form>
-
                             </div>
                             <!-- END:  STEP 4 -->
 
@@ -443,7 +476,7 @@
                                             <span style="font-weight: bold; color: #888;">Address: &nbsp;&nbsp;</span>  {{picked_officeaddress}}
                                         </div>
                                         <div style="margin-block: 4px;">
-                                            <span style="font-weight: bold; color: #888;">Contact: &nbsp;&nbsp;</span> {{picked_code + ' '+picked_phonenumber}}
+                                            <span style="font-weight: bold; color: #888;">Contact: &nbsp;&nbsp;</span> +{{picked_phonecode + ' '+picked_phonenumber}}
                                         </div>
                                     </div>
                                 </section>
@@ -474,7 +507,7 @@
                                                 </td>
                                                 <td style="width: 1000px;">
                                                     <div style="float: right;">
-                                                        {{currency}}{{choosenRate}}
+                                                        {{currencySymbol}}{{choosenRate | number: '1.0-0'}} 
                                                     </div>
                                                 </td>
                                             </tr>
@@ -533,7 +566,7 @@
                                   
                                     <div style=" padding-top:10px;">
                                         <div style="font-size: 26px; font-weight:bold;">
-                                          <span style="color: #777">Payable: &nbsp;&nbsp;</span>  {{currency}}{{totalPayable | number: '1.0-0'}} <span style="font-size: 13px; font-weight: normal;">/Month</span>
+                                          <span style="color: #777; font-weight: normal; font-size: 16px;">Payable: &nbsp;</span>{{currencySymbol}}{{totalPayable | number: '1.0-0'}} <span style="font-size: 16px; font-weight: normal;">{{picked_billingcycle}}</span>
                                         </div>
                                     </div>
                                     
@@ -542,7 +575,7 @@
 
                             
 
-                            <div  style=" position: absolute; bottom: 0;"  class="wizard-step-btn-margin">
+                            <div   class="wizard-step-btn-margin">
                                 <table>
                                     <tr>
                                         <td style="width: 1000px;">
@@ -552,18 +585,31 @@
                                         </td>
                                         <td style="width: 1000px;">
                                             <div style="float: right;">
-                                                <button mat-button (click)="pay()" class="continue-btn">Pay</button>
+
+
+                                                <button mat-button
+                                               
+                                                angular4-paystack
+                                                [paystackOptions]="options"
+
+                                                (paymentInit)="paymentInit()"
+                                                (onClose)="paymentCancel($event)"
+                                                (callback)="paymentDone($event)"
+                                                
+                                                class="continue-btn">Pay</button>
+
+
+
+                                                 
                                             </div>
                                         </td>
                                     </tr>
                                 </table>
-                                <app-terms></app-terms>
+                                <app-termsbottomtext></app-termsbottomtext>
                             </div>
 
 
                         </DIV>
-
-                        
 
                     </mat-card>
                 </div>
@@ -577,145 +623,9 @@
 
 </section>
 
-<section style="position: relative;
+
+<section style="position:relative;
 bottom: 0px; width: 100%;">
 <app-customfooter></app-customfooter>
-
-<!-- <app-smallfooter></app-smallfooter> -->
 </section>
-<form id="paymentForm">
-    <div class="form-group">
-      <label for="email">Email Address</label>
-      <input type="email" id="email-address" required />
-    </div>
-    <div class="form-group">
-      <label for="amount">Amount</label>
-      <input type="tel" id="amount" required />
-    </div>
-    <div class="form-group">
-      <label for="first-name">First Name</label>
-      <input type="text" id="first-name" />
-    </div>
-    <div class="form-group">
-      <label for="last-name">Last Name</label>
-      <input type="text" id="last-name" />
-    </div>
-    <div class="form-submit">
-        <button (click)="alertmeTS()">test</button>
-      <button type="submit" onclick="
-      
 
-        PaystackPop.setup({
-            key: 'pk_test_7bbb186402747cc9c97763d5e9fa0fe4dfbbd816', // Replace with your public key
-
-            email: document.getElementById('email-address').value,
-            amount: document.getElementById('amount').value * 100,
-
-            ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
-            onClose: function(){
-            alert('Window closed.');
-            },
-            callback: function(response){
-            let message = 'Payment complete! Reference: ' + response.reference;
-            alert(message);
-            }
-        }).openIframe();
-        
-      
-      "> Pay Now</button>
-    </div>
-  </form>
-
-  <script>
-    // const paymentForm = document.getElementById('paymentForm');
-    // paymentForm.addEventListener("submit", payWithPaystack, false);
-  
-    // function payWithPaystack() {
-    //   // e.preventDefault();
-    //   let handler = PaystackPop.setup({
-    //     key: 'pk_test_7bbb186402747cc9c97763d5e9fa0fe4dfbbd816', // Replace with your public key
-    //     email: document.getElementById("email-address").value,
-    //     amount: document.getElementById("amount").value * 100,
-    //     // email: 'ekanemwork@gmail.com',
-    //     // amount: 100000,
-    //     ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
-    //     // label: "Optional string that replaces customer email"
-    //     onClose: function(){
-    //       alert('Window closed.');
-    //     },
-    //     callback: function(response){
-    //       let message = 'Payment complete! Reference: ' + response.reference;
-    //       alert(message);
-    //     }
-    //   });
-    //   handler.openIframe();
-    // }
-  </script>
-<!-- <button type="submit" onclick="payWithPaystack()"> Creftbox </button> -->
-
-<!-- <form id="paymentForm">
-    <div class="form-group">
-      <label for="email">Email Address</label>
-      <input type="email" id="email-address" required />
-    </div>
-    <div class="form-group">
-      <label for="amount">Amount</label>
-      <input type="tel" id="amount" required />
-    </div>
-    <div class="form-group">
-      <label for="first-name">First Name</label>
-      <input type="text" id="first-name" />
-    </div>
-    <div class="form-group">
-      <label for="last-name">Last Name</label>
-      <input type="text" id="last-name" />
-    </div>
-    <div class="form-submit">
-      <button type="submit" onclick="payWithPaystack()"> Pay </button>
-    </div>
-  </form> -->
-<!-- 
-<form id="paymentForm">
-    <div class="form-group">
-      <label for="email">Email Address</label>
-      <input type="email" id="email-address" required />
-    </div>
-    <div class="form-group">
-      <label for="amount">Amount</label>
-      <input type="tel" id="amount" required />
-    </div>
-    <div class="form-group">
-      <label for="first-name">First Name</label>
-      <input type="text" id="first-name" />
-    </div>
-    <div class="form-group">
-      <label for="last-name">Last Name</label>
-      <input type="text" id="last-name" />
-    </div>
-    <div class="form-submit">
-      <button type="submit" onclick="payWithPaystack()"> Pay </button>
-    </div>
-  </form>
-<script>
-const paymentForm = document.getElementById('paymentForm');
-paymentForm.addEventListener("submit", payWithPaystack, false);
-function payWithPaystack(e) {
-e.preventDefault();
-let handler = PaystackPop.setup({
-key: 'pk_test_7bbb186402747cc9c97763d5e9fa0fe4dfbbd816', // Replace with your public key
-email: document.getElementById("email-address").value,
-amount: document.getElementById("amount").value * 100,
-ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
-// label: "Optional string that replaces customer email"
-onClose: function(){
-  alert('Window closed.');
-},
-callback: function(response){
-  let message = 'Payment complete! Reference: ' + response.reference;
-  alert(message);
-}
-});
-handler.openIframe();
-}
-</script>
-<script src="https://js.paystack.co/v1/inline.js"></script>  -->

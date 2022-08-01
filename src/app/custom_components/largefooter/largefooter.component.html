@@ -1,10 +1,11 @@
-<section style="background: #000; padding-block: 10px;">
+<section style="background: #000; padding-block: 10px;"(window:resize)="ScreenSizing()" >
     <section style="max-width:1150px; margin: auto; padding: 25px;">
        
-        <!-- FLEX CONTAINER -->
-        <div class="flex-container">
+        <!-- FLEX CONTAINER  LARGE SCREEN-->
+        <!-- FLEX CONTAINER  LARGE SCREEN-->
+        <div class="flex-container" *ngIf="message>740">
 
-            <div class="flex-child-r">
+            <div class="flex-child-r" style="padding-block: 5px;">
                 <div style="font-weight: bold; padding-block: 5px; font-size: 20px; color: #8F8C8C;">
                     COMPANY
                 </div>
@@ -18,7 +19,8 @@
                     Blog
                 </div>
             </div>
-            <div class="flex-child-r">
+            
+            <div class="flex-child-r" style="padding-block: 5px;">
                 <div style="font-weight: bold; padding-block: 5px; font-size: 20px; color: #8F8C8C;">
                     PRODUCTS
                 </div>
@@ -29,10 +31,12 @@
                     API systems
                 </div>
                 <div class="footersubgroup">
-                    Respos
+                    RestPOS
                 </div>
             </div>
-            <div class="flex-child-r">
+
+
+            <div class="flex-child-r" style="padding-block: 5px;">
                 <div style="font-weight: bold; padding-block: 5px; font-size: 20px; color: #8F8C8C;">
                     HELP & SUPPORT
                 </div>
@@ -46,8 +50,102 @@
                     FAQs
                 </div>
             </div>
-            <div class="flex-child-r">
-                <div style="font-size: 18px; color: #fff;">
+            <div class="flex-child-r" style="padding-block: 5px;">
+                <div style="font-weight: bold; padding-block: 5px; font-size: 20px; color: #8F8C8C;">
+                    OFFICE
+                </div>
+                <div style="font-size: 15px; color: #fff;">
+                    1 Ogunlowo Street, Off Ajao Road,<br> Ikeja, Lagos
+                </div>
+                <div style="padding-block: 20px;">
+                    <table>
+                        <tr>
+                            <td>
+                                <div style="margin-right: 10px;">
+                                    <img src="../../../assets/facebook.png" alt="" style="width: 30px;">
+                                </div>
+                            </td>
+                            <td>
+                                <div style="margin-inline: 10px;">
+                                    <img src="../../../assets/instagram.png" alt="" style="width: 30px;">
+                                </div>
+                            </td>
+                            <td>
+                                <div style="margin-inline: 10px;">
+                                    <img src="../../../assets/linkedin.png" alt="" style="width: 30px;">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+        <!-- END: FLEX CONTAINER  LARGE SCREEN -->
+        <!-- END: FLEX CONTAINER  LARGE SCREEN -->
+
+
+
+
+
+        <!-- FLEX CONTAINER MID SCREEN -->
+        <!-- FLEX CONTAINER MID SCREEN -->
+        <div class="flex-container" *ngIf="message>450 && message<740">
+
+            <div class="flex-child-r" style="padding-block: 5px;">
+                <div style="font-weight: bold; padding-block: 5px; font-size: 20px; color: #8F8C8C;">
+                    COMPANY
+                </div>
+                <div class="footersubgroup">
+                    About Us
+                </div>
+                <div class="footersubgroup">
+                    Brand Guidlines
+                </div>
+                <div class="footersubgroup">
+                    Blog
+                </div>
+            </div>
+            
+            <div class="flex-child-r" style="padding-block: 5px;">
+                <div style="font-weight: bold; padding-block: 5px; font-size: 20px; color: #8F8C8C;">
+                    PRODUCTS
+                </div>
+                <div class="footersubgroup">
+                    RetailPOS
+                </div>
+                <div class="footersubgroup">
+                    API systems
+                </div>
+                <div class="footersubgroup">
+                    Respos
+                </div>
+            </div>
+
+        </div>
+        <div class="flex-container" *ngIf="message>450 && message<740">
+
+
+
+            <div class="flex-child-r" style="padding-block: 5px;">
+                <div style="font-weight: bold; padding-block: 5px; font-size: 20px; color: #8F8C8C;">
+                    HELP & SUPPORT
+                </div>
+                <div class="footersubgroup">
+                    Contact Us
+                </div>
+                <div class="footersubgroup">
+                    Contact Sales
+                </div>
+                <div class="footersubgroup">
+                    FAQs
+                </div>
+            </div>
+            <div class="flex-child-r" style="padding-block: 5px;">
+                <div style="font-weight: bold; padding-block: 5px; font-size: 20px; color: #8F8C8C;">
+                    OFFICE
+                </div>
+                <div style="font-size: 15px; color: #fff;">
                     1 Ogunlowo Street, Off Ajao Rd, Ikeja, Lagos
                 </div>
                 <div style="padding-block: 20px;">
@@ -74,7 +172,98 @@
             </div>
             
         </div>
-        <!-- END: FLEX CONTAINER -->
+        <!-- END: FLEX CONTAINER MID SCREEN -->
+        <!-- END: FLEX CONTAINER MID SCREEN -->
+
+
+
+
+
+        <!-- FLEX CONTAINER SMALL SCREEN -->
+        <!-- FLEX CONTAINER SMALL SCREEN -->
+        <div  *ngIf="message<450">
+
+            <div class="flex-child-r" style="padding-block: 5px;">
+                <div style="font-weight: bold; padding-block: 5px; font-size: 20px; color: #8F8C8C;">
+                    COMPANY
+                </div>
+                <div class="footersubgroup">
+                    About Us
+                </div>
+                <div class="footersubgroup">
+                    Brand Guidlines
+                </div>
+                <div class="footersubgroup">
+                    Blog
+                </div>
+            </div>
+            
+            <div class="flex-child-r" style="padding-block: 5px;">
+                <div style="font-weight: bold; padding-block: 5px; font-size: 20px; color: #8F8C8C;">
+                    PRODUCTS
+                </div>
+                <div class="footersubgroup">
+                    RetailPOS
+                </div>
+                <div class="footersubgroup">
+                    API systems
+                </div>
+                <div class="footersubgroup">
+                    RestPOS
+                </div>
+            </div>
+
+        
+
+            <div class="flex-child-r" style="padding-block: 5px;">
+                <div style="font-weight: bold; padding-block: 5px; font-size: 20px; color: #8F8C8C;">
+                    HELP & SUPPORT
+                </div>
+                <div class="footersubgroup">
+                    Contact Us
+                </div>
+                <div class="footersubgroup">
+                    Contact Sales
+                </div>
+                <div class="footersubgroup">
+                    FAQs
+                </div>
+            </div>
+            <div class="flex-child-r" style="padding-block: 5px;">
+                <div style="font-weight: bold; padding-block: 5px; font-size: 20px; color: #8F8C8C;">
+                    OFFICE
+                </div>
+                <div style="font-size: 15px; color: #fff;">
+                    1 Ogunlowo Street, Off Ajao Road,<br> Ikeja, Lagos
+                </div>
+                <div style="padding-block: 20px;">
+                    <table>
+                        <tr>
+                            <td>
+                                <div style="margin-right: 10px;">
+                                    <img src="../../../assets/facebook.png" alt="" style="width: 30px;">
+                                </div>
+                            </td>
+                            <td>
+                                <div style="margin-inline: 10px;">
+                                    <img src="../../../assets/instagram.png" alt="" style="width: 30px;">
+                                </div>
+                            </td>
+                            <td>
+                                <div style="margin-inline: 10px;">
+                                    <img src="../../../assets/linkedin.png" alt="" style="width: 30px;">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+        <!-- END: FLEX CONTAINER SMALL SCREEN -->
+        <!-- END: FLEX CONTAINER SMALL SCREEN -->
+
+
         
         <div style="padding-top: 10px;">
             <table>

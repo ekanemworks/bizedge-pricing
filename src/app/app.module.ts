@@ -9,6 +9,9 @@ import { MaterialModule } from "./material/material.module";
 import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { Angular4PaystackModule } from 'angular4-paystack';
+
+
 
 
 // PAGES
@@ -22,10 +25,11 @@ import { PurchasesummaryComponent } from './pages/purchasesummary/purchasesummar
 import { SmallfooterComponent } from './custom_components/smallfooter/smallfooter.component';
 import { LargefooterComponent } from './custom_components/largefooter/largefooter.component';
 import { CustomfooterComponent } from './custom_components/customfooter/customfooter.component';
-import { TermsComponent } from './custom_components/terms/terms.component';
 import { TermspageComponent } from './pages/termspage/termspage.component';
 import { PrivacypageComponent } from './pages/privacypage/privacypage.component';
 import { CoolbuttonsComponent } from './custom_components/coolbuttons/coolbuttons.component';
+import { TermsbottomtextComponent } from './custom_components/termsbottomtext/termsbottomtext.component';
+import { EmailtestComponent } from './custom_components/emailtest/emailtest.component';
 
 @NgModule({
   declarations: [
@@ -39,10 +43,11 @@ import { CoolbuttonsComponent } from './custom_components/coolbuttons/coolbutton
     SmallfooterComponent,
     LargefooterComponent,
     CustomfooterComponent,
-    TermsComponent,
     TermspageComponent,
     PrivacypageComponent,
-    CoolbuttonsComponent
+    CoolbuttonsComponent,
+    TermsbottomtextComponent,
+    EmailtestComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +56,13 @@ import { CoolbuttonsComponent } from './custom_components/coolbuttons/coolbutton
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    Angular4PaystackModule.forRoot('pk_test_xxxxxxxxxxxxxxxxxxxxxxxx'),
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

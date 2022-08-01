@@ -6,10 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./termspage.component.css']
 })
 export class TermspageComponent implements OnInit {
+  screenSize: any;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.screenSize = window.innerWidth;
+
+  }
+  // RESIZE FUNCTION
+  // RESIZE FUNCTION
+  // RESIZE FUNCTION
+  ScreenSizing(): any {
+    
+    this.screenSize = window.innerWidth;
+
   }
 
 }

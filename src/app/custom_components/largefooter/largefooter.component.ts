@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-largefooter',
@@ -7,9 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LargefooterComponent implements OnInit {
 
+  @Input() message: any;
   constructor() { }
 
   ngOnInit(): void {
+    
+  }
+
+  
+
+
+  // RESIZE FUNCTION
+  // RESIZE FUNCTION
+  // RESIZE FUNCTION
+  ScreenSizing(): any {
+
+    if (window.innerWidth < 800) {
+
+    }else{
+    }  
+
   }
 
 }

@@ -21,6 +21,8 @@
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
     "angular-paystack": "^1.0.0",
+    "angular4-paystack": "^3.0.2",
+    "http-server": "^14.1.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

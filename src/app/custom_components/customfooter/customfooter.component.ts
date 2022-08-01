@@ -8,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class CustomfooterComponent implements OnInit {
 
   constructor() { }
-
+  cYear
   ngOnInit(): void {
+
+    var currentDate = new Date();
+   this.cYear = currentDate.getFullYear()
   }
+
+
 
 }

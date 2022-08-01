@@ -1,6 +1,0 @@
-
-  function alertmeTS(){
-
-    
-    alert('Ekanem');
-  }

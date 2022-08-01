@@ -9,10 +9,22 @@
 } 
 
 .gs-first{
-    flex: 4;
+    flex: 3;
 }
 .gs-second{
-    flex: 3;
+    flex: 4;
+}
+
+.phonecode-col{
+  flex: 1;
+}
+
+.phonenumber-col{
+  flex: 5;
+}
+
+.state-col{
+  flex: 5;
 }
 
 /* ::ng-deep .mat-step-header .mat-step-icon-selected {
@@ -45,17 +57,20 @@ mat-form-field {
 
   .continue-btn{
     background: linear-gradient(180deg, #2C68DE 0%, #022D7E 100%);
-    border-radius: 10px; width: 100px; padding: 5px; color: #fff;
+    /* border-radius: 10px;  */
+    width: 100px; padding: 5px; color: #fff;
   }
 
   .back-btn{
-    border-radius: 10px; width: 100px; padding: 5px; color: #555;
+    /* border-radius: 10px;  */
+    width: 100px; padding: 5px; color: #555;
     border: 1px solid #ddd;
   }
 
   .indicator-point{
-    width: 30px; padding-block: 4px; border: 1px solid #00A69C; border-radius: 50%; text-align: center; color: #00A69C;
+    width: 30px; padding-block: 4px; border: 2px solid #029086; border-radius: 50%; text-align: center; color: #00A69C;
     font-weight: bold;
+    background: linear-gradient(#fff,#fff);
 
   }
 
@@ -65,8 +80,8 @@ mat-form-field {
 
 
   .indicator-point-active{
-    width: 30px; padding-block: 4px; border: 1px solid #00A69C; border-radius: 50%; text-align: center;
-    background: #00A69C;
+    width: 30px; padding-block: 4px; border: 2px solid #01aca1; border-radius: 50%; text-align: center;
+    background: linear-gradient(#00c4b7,#008980);
     font-weight: bold;
     color: #fff;
   }
