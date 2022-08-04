@@ -24,7 +24,7 @@ export class PlansComponent implements OnInit {
   plansResponse: any[]=[];
   featuresResponse: any[]=[];
   currencySymbol: any;
-  billingcycle: String = 'Paid Annually';
+  billingcycle: String = 'Paid Yearly';
   monthlyPenalty = 0;
   annualpenalty = 1;
   billingcycleMultiplier = this.annualpenalty;
@@ -99,7 +99,7 @@ export class PlansComponent implements OnInit {
     this.appSettings_Function();
     this.screenSize = window.innerWidth;
 
-    sessionStorage.setItem('picked_billingcycle', 'Annually');
+    sessionStorage.setItem('picked_billingcycle', 'Yearly');
 
   }
 
@@ -146,14 +146,14 @@ export class PlansComponent implements OnInit {
     this.shared.post_services_api(api,path,key,body).subscribe({
           next: (v) => {
             var response = JSON.parse(JSON.stringify(v));
-            console.log(v);
+            // console.log(v);
             this.plansResponse = response.items
 
             sessionStorage.setItem('plansResponse',JSON.stringify(this.plansResponse))
 
           },
           error: (e) => {
-            console.log(e);
+            // console.log(e);
             this.openSnackBar(e.message,'close')
           },
           complete: () => console.info('complete') 
@@ -170,14 +170,14 @@ export class PlansComponent implements OnInit {
     this.shared.get_services_api(api,path,key).subscribe({
           next: (v) => {
             var response = JSON.parse(JSON.stringify(v));
-            console.log(v);
+            // console.log(v);
             this.featuresResponse = response.items
 
             sessionStorage.setItem('featuresResponse',JSON.stringify(this.featuresResponse))
 
           },
           error: (e) => {
-            console.log(e);
+            // console.log(e);
             this.openSnackBar(e.message,'close')
           },
           complete: () => console.info('complete') 
@@ -191,8 +191,8 @@ export class PlansComponent implements OnInit {
   // TOGGLE CONTROL FUNCTION
   toggleBilling(){
         if (this.isAnnually == false) {
-      this.billingcycle = "Paid Annually";
-      sessionStorage.setItem('picked_billingcycle', 'Annually');
+      this.billingcycle = "Paid Yearly";
+      sessionStorage.setItem('picked_billingcycle', 'Yearly');
       this.BasicPrice = this.BasicPricePerMonthOnAnnualy
       this.SilverPrice = this.SilverPricePerOnAnnualy
     }else{

@@ -12,7 +12,7 @@ export class EmailtestComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.emailDisplay = '2'
+    this.emailDisplay = '3'
 
   }
 

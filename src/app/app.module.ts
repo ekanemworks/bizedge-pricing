@@ -54,7 +54,7 @@ import { EmailtestComponent } from './custom_components/emailtest/emailtest.comp
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule,
+    FormsModule,                               // <========== Add this line!
     ReactiveFormsModule,
     HttpClientModule,
     Angular4PaystackModule.forRoot('pk_test_xxxxxxxxxxxxxxxxxxxxxxxx'),

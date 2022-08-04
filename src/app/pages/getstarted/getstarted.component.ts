@@ -31,13 +31,18 @@ export class GetstartedComponent implements OnInit {
   stepStatusActive: any = 'indicator-point-active';
   stepStatusInactive: any = 'indicator-point';
   hidePasswordBool = 'password';
+  companyEmailError = false;
+  companyPhoneError = false;
+  userEmailError = false;
+  userPhoneError = false;
 
 
   reference: any = '';
   title: any = '';
   wizardIndex = '1';
   paystackKey = '';
-  paystackCurrency = 'NGN'
+  paystackCurrency = ''
+  // paystackCurrency = 'NGN'
 
 
   // DROP DOWN OPTIONS
@@ -50,6 +55,7 @@ export class GetstartedComponent implements OnInit {
   country_options: String[]=[];
   state_options: String[]=[];
   phonecode_options: String[]=[]
+  
 
 
   currencySymbol: any;
@@ -134,7 +140,6 @@ export class GetstartedComponent implements OnInit {
     });
 
 
-    // console.log(this.shared.getPlanInfo());
 
     this.currencySymbol = sessionStorage.getItem('currency');
     this.choosenRate =  sessionStorage.getItem('choosenRate');
@@ -178,10 +183,10 @@ export class GetstartedComponent implements OnInit {
       businessname:             [null, [Validators.required, Validators.maxLength(30)]],
       businessemailaddress:     [null, [Validators.required, Validators.maxLength(30)]],
       businessphonecode:        [null, [Validators.required, Validators.maxLength(30)]],
-      businessphonenumber:      [null, [Validators.required, Validators.maxLength(30),Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
-      website:                  [null, [ Validators.maxLength(30)]],
+      businessphonenumber:      [null, [Validators.required, Validators.minLength(9), Validators.maxLength(14), Validators.pattern("^[0-9]*$")]],
+      website:                  ['', [ Validators.maxLength(30)]],
       officeaddress:            [null, [Validators.required, Validators.maxLength(30)]],
-      additionalinfo:           [null, [ Validators.maxLength(30)]],
+      additionalinfo:           ['', [ Validators.maxLength(30)]],
       businesscountry:          [null, [Validators.required, Validators.maxLength(30)]],
       businesscity:             [null, [Validators.required, Validators.maxLength(30)]],
       businessstate:            [null, [Validators.required, Validators.maxLength(30)]],
@@ -190,10 +195,10 @@ export class GetstartedComponent implements OnInit {
     this.step4Form = this.formBuilder.group({
       firstname:                [null, [Validators.required, Validators.maxLength(30)]],
       lastname:                 [null, [Validators.required, Validators.maxLength(30)]],
-      phonecode:                     [null, [Validators.required, Validators.maxLength(30)]],
-      phonenumber:              [null, [Validators.required, Validators.minLength(9),Validators.pattern("^[0-9]*$"),]],
+      phonecode:                [null, [Validators.required, Validators.maxLength(30)]],
+      phonenumber:              [null, [Validators.required, Validators.minLength(9), Validators.maxLength(14),Validators.pattern("^[0-9]*$"),]],
       personalemailaddress:     [null, [Validators.required, Validators.maxLength(40)]],
-      password:                 [null, [Validators.required, Validators.minLength(4)]],
+      password:                 [null, [Validators.required, Validators.minLength(4), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{6,}$")]],
     });
   }
 
@@ -226,8 +231,8 @@ export class GetstartedComponent implements OnInit {
     .then(data => {
       this.appConfig = JSON.parse(data);      
       this.currencySymbol = this.appConfig.currency.symbol;
-      this.paystackCurrency = this.appConfig.currency.symbol;
       this.paystackKey = this.appConfig.paystackPublicKey;
+      this.paystackCurrency = this.appConfig.currency.code
       
       // CALL GET FEATURES
       this.get_industry_function(this.appConfig.baseUrl, this.appConfig.industryListUrl, this.appConfig.bizedgeAPIKey);
@@ -248,10 +253,9 @@ export class GetstartedComponent implements OnInit {
             this.industry_options = response.items;
           },
           error: (e) => {
-            console.log(e);
             this.openSnackBar(e.message,'close')
           },
-          complete: () => console.info('complete') 
+          complete: () => {console.info('complete') }
         })
   }
 
@@ -271,10 +275,11 @@ export class GetstartedComponent implements OnInit {
             
           },
           error: (e) => {
-            console.log(e);
             this.openSnackBar(e.message,'close')
           },
-          complete: () => console.info('complete') 
+          complete: () => {
+            console.info('complete') 
+          }
         })
   }
 
@@ -289,15 +294,13 @@ export class GetstartedComponent implements OnInit {
       next: (v) => {
         var response = JSON.parse(JSON.stringify(v));
         this.country_options = response.items;
-
-        console.log(response);
-
       },
       error: (e) => {
-        console.log(e);
         this.openSnackBar(e.message,'close')
       },
-      complete: () => console.info('complete') 
+      complete: () => {
+        console.info('complete') 
+      }
     })
   }
 
@@ -312,12 +315,16 @@ export class GetstartedComponent implements OnInit {
       next: (v) => {
         var response = JSON.parse(JSON.stringify(v));
         this.state_options = response.items;
-      
-        this.step3Form.controls['businessstate'].setValue(response.items[0]['id']);
+        
+        if (response.items.length == 0 || response.items == null) {
+          
+        }else{
+          this.step3Form.controls['businessstate'].setValue(response.items[0]['id']);
+
+        }
 
       },
       error: (e) => {
-        console.log(e);
         this.openSnackBar(e.message,'close')
       },
       complete: () => console.info('complete') 
@@ -340,10 +347,9 @@ export class GetstartedComponent implements OnInit {
         
       },
       error: (e) => {
-        console.log(e);
         this.openSnackBar(e.message,'close')
       },
-      complete: () => console.info('complete') 
+      complete: () => {console.info('complete') }
     })
   }
 
@@ -400,12 +406,12 @@ export class GetstartedComponent implements OnInit {
   // PAYSTACK PAYMENT FUNCTIONS
   // PAYSTACK PAYMENT FUNCTIONS
   paymentInit() {
+    
     console.log('Payment initialized');
   }
 
   paymentDone(response: any) {
     this.title = 'Payment successfull';
-    console.log(this.title, response);
     if (response.status == 'success') {
 
    
@@ -430,33 +436,41 @@ export class GetstartedComponent implements OnInit {
           phone:this.picked_phonenumber,
           email:this.picked_personalemailaddress,
           password:this.picked_password,
-          payreference:response.reference,
-          paytransaction:response.transaction,
+          bereference:response.reference,
+          pgreference:response.transaction,
           paystatus:response.status
       }
 
+
+      
+  // "bereference":"2208031020301220",
+  // "pgreference":"2008031020301220",
 
       
 
       this.shared.post_services_api(this.appConfig.baseUrl,this.appConfig.companyOnboardUrl,this.appConfig.bizedgeAPIKey,JsonBody).subscribe({
         next: (v) => {
           var response = JSON.parse(JSON.stringify(v));
-          console.log(response);
-          console.log(this.appConfig.baseUrl+this.appConfig.companyOnboardUrl);
           
           if (response['errorCode'] == 0) {
-            
             window.location.href = '/paymentsuccess';
             sessionStorage.clear();
           }else{
+             this._snackBar.open(response['errorMessage'], 'close',{
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+              duration: 3000
+            });
+
             window.location.href = '/paymentfailed';
             sessionStorage.clear();
-
           }
+          
 
+
+         
         },
         error: (e) => {
-          console.log(e);
           this.openSnackBar(e.message,'close')
         },
         complete: () => console.info('complete') 
@@ -469,8 +483,6 @@ export class GetstartedComponent implements OnInit {
 
   paymentCancel(ref: any) {
     this.title = 'Payment Cancelled';
-    console.log(this.title, ref);
-    // console.log('payment failed');
   }
   
   // PAYSTACK OPTIONS
@@ -489,10 +501,11 @@ export class GetstartedComponent implements OnInit {
 
 
   generateRefernce(){
-    let changedFormat = this.pipe.transform(this.today, 'YYMMdd');
+    let changedFormat = this.pipe.transform(this.today, 'YYMMddHHmmss');
     this.changedDate = changedFormat == null?'1':changedFormat;
-    var str3 = Math.random().toString().substring(2, 7)
-    this.reference = `${this.changedDate}-${str3}`;
+    var str3 = Math.random().toString().substring(2, 6)
+    this.reference = `${this.changedDate}${str3}`;
+    
     return this.reference;
   }
  
@@ -531,7 +544,7 @@ export class GetstartedComponent implements OnInit {
     this.picked_personalemailaddress = this.step4Form.value.personalemailaddress;
     this.picked_password = this.step4Form.value.password;
 
-    if (this.picked_billingcycle == 'Annually') {
+    if (this.picked_billingcycle == 'Yearly') {
       this.picked_months = 12;
     }else{
       this.picked_months = 1;
@@ -607,17 +620,169 @@ export class GetstartedComponent implements OnInit {
 
   step3Validate(){
     if (this.step3Form.valid) {
-      this.nextStep();
+
+      
+      var baseapi = this.appConfig.baseUrl;
+      var companyEmailExistUrl = this.appConfig.companyEmailExistUrl;
+      var companyPhoneExistUrl = this.appConfig.companyPhoneExistUrl;
+      var apiKey = this.appConfig.bizedgeAPIKey;
+      var emailParameter = this.step3Form.value.businessemailaddress;
+      var businessphonenumber = '';
+      // TRIM OFF ZERO IF IT IS FIRST CHARACTER IN PHONENUMBER
+      if (this.step3Form.value.businessphonenumber.substring(0,1)==0) {
+        businessphonenumber = this.step3Form.value.businessphonenumber.substring(1,this.step3Form.value.businessphonenumber.length)
+      }else{
+        businessphonenumber = this.step3Form.value.businessphonenumber
+      }
+      var businessphoneParameter = this.step3Form.value.businessphonecode+'.'+businessphonenumber;
+ 
+      
+
+
+
+
+
+
+     
+     
+
+        // CHECK IF COMPANY EMAIL EXISIT
+        // CHECK IF COMPANY EMAIL EXISIT
+        this.shared.get_services_api_parameter(baseapi,companyEmailExistUrl,apiKey, emailParameter).subscribe({
+          next: (v) => {
+
+            var emailResponse = JSON.parse(JSON.stringify(v));
+          
+            if (emailResponse['value'] == true) {
+              this.step3Form.controls['businessemailaddress'].setErrors({'incorrect': true});
+              this.companyEmailError = true;
+            }else{
+
+              // CHECK IF COMPANY PHONE EXISIT
+              // CHECK IF COMPANY PHONE EXISIT
+              this.shared.get_services_api_parameter(baseapi,companyPhoneExistUrl,apiKey,businessphoneParameter).subscribe({
+                next: (v) => {
+                  
+                  var phoneCheckResponse = JSON.parse(JSON.stringify(v));
+                
+                  if (phoneCheckResponse['value'] == true) {
+                    
+                    this.step3Form.controls['businessphonenumber'].setErrors({'incorrect': true});
+                    this.companyPhoneError = true;
+                  }else{
+                      this.nextStep();
+                  }
+                },
+                error: (e) => {
+                  this.openSnackBar(e.message,'close')
+                },
+                complete: () => {console.info('complete') }
+              });
+              // End of company phone check
+
+            }
+
+          },
+          error: (e) => {
+            this.openSnackBar(e.message,'close')
+          },
+          complete: () => {
+            console.info('complete') 
+          }
+        });
+
+      
+      
     }else{
       this.openSnackBar('Fill the Required Fields', 'close');
     }
   }
 
+
+
+
+
+
+
+
+
+
   step4Validate(){
     if (this.step4Form.valid) {
-      this.opensummary();
+
+
+     
+      
+      var baseapi = this.appConfig.baseUrl;
+      var userEmailExistUrl = this.appConfig.userEmailExistUrl;
+      var userPhoneExistUrl = this.appConfig.userPhoneExistUrl;
+      var apiKey = this.appConfig.bizedgeAPIKey;
+      var emailParameter = this.step4Form.value.personalemailaddress;
+      var phonenumber = '';
+      // TRIM OFF ZERO IF IT IS FIRST CHARACTER IN PHONENUMBER
+      if (this.step4Form.value.phonenumber.substring(0,1)==0) {
+        phonenumber = this.step4Form.value.phonenumber.substring(1,this.step4Form.value.phonenumber.length)
+      }else{
+        phonenumber = this.step4Form.value.phonenumber
+      }
+      var phonenumberParameter = this.step4Form.value.phonecode+'.'+phonenumber;
+ 
+      
+
+     
+
+        // CHECK IF USER EMAIL EXISIT
+        // CHECK IF USER EMAIL EXISIT
+        this.shared.get_services_api_parameter(baseapi,userEmailExistUrl,apiKey, emailParameter).subscribe({
+          next: (v) => {
+
+            var emailResponse = JSON.parse(JSON.stringify(v));
+          
+            if (emailResponse['value'] == true) {
+              this.step4Form.controls['personalemailaddress'].setErrors({'incorrect': true});
+              this.userEmailError = true;
+            }else{
+
+              // CHECK IF USER PHONE EXISIT
+              // CHECK IF USER PHONE EXISIT
+              this.shared.get_services_api_parameter(baseapi,userPhoneExistUrl,apiKey,phonenumberParameter).subscribe({
+                next: (v) => {
+                  
+                  var phoneCheckResponse = JSON.parse(JSON.stringify(v));
+                
+                  if (phoneCheckResponse['value'] == true) {
+                    
+                    this.step4Form.controls['phonenumber'].setErrors({'incorrect': true});
+                    this.userPhoneError = true;
+                  }else{
+                    this.opensummary();
+
+                  }
+                },
+                error: (e) => {
+                  this.openSnackBar(e.message,'close')
+                },
+                complete: () => {
+                  console.info('complete')
+                } 
+              });
+              // End of company phone check
+
+            }
+
+          },
+          error: (e) => {
+            this.openSnackBar(e.message,'close')
+          },
+          complete: () => {
+            console.info('complete') 
+          }
+        });
+
+
+
     }else{
-      this.openSnackBar('All Fields Are Required', 'close');
+      this.openSnackBar('Invalid input detected: Fill All Correctly', 'close');
     }
   }
 
@@ -683,7 +848,13 @@ export class GetstartedComponent implements OnInit {
     }
   }
 
+  removeErr(){
+    this.companyEmailError = false;
+    this.companyPhoneError = false;
 
+    this.userPhoneError = false;
+    this.userEmailError =  false
+  }
 
 
 

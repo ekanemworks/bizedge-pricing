@@ -289,21 +289,24 @@
                                         </mat-form-field>
                                         <mat-form-field appearance="outline">
                                             <mat-label>Business Email Address</mat-label>
-                                            <input matInput type="email" formControlName="businessemailaddress" placeholder="" email="true">
+                                            <input matInput type="email" formControlName="businessemailaddress" placeholder="" email="true" (click)="removeErr()">
+                                            <mat-hint *ngIf="companyEmailError == true" style="color: red">Company Email Entered is in Use <br><br></mat-hint>
                                         </mat-form-field>
+                                        <div *ngIf="companyEmailError == true"><br><br></div>
                                         <div class="flex-container">
                                             <div class="phonecode-col">
                                                 <mat-form-field appearance="outline" style="width: 100px;">
                                                     <mat-label>Code</mat-label>
                                                     <mat-select name="phonecode" formControlName="businessphonecode" >
-                                                            <mat-option  *ngFor="let data of phonecode_options" value="{{data}}">{{data}}</mat-option>
+                                                            <mat-option  *ngFor="let data of phonecode_options" value="{{data}}">+{{data}}</mat-option>
                                                     </mat-select>
                                                 </mat-form-field>
                                             </div>
                                             <div class="phonenumber-col">
                                                 <mat-form-field appearance="outline">
                                                     <mat-label>Phone number</mat-label>
-                                                    <input matInput type="figure" formControlName="businessphonenumber" placeholder="">
+                                                    <input matInput type="figure" formControlName="businessphonenumber" placeholder="" (click)="removeErr()">
+                                                    <mat-hint *ngIf="companyPhoneError == true" style="color: red">Company Phonenumber Entered is in Use <br><br></mat-hint>
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -407,7 +410,7 @@
                                                     <mat-label>Code</mat-label>
                                                     <mat-select name="city" formControlName="phonecode" >
                                                         <div *ngFor="let data of phonecode_options">
-                                                            <mat-option value="{{data}}">{{data}}</mat-option>
+                                                            <mat-option value="{{data}}">+{{data}}</mat-option>
                                                         </div>
                                                     </mat-select>
                                                 </mat-form-field>
@@ -415,20 +418,30 @@
                                             <div class="phonenumber-col">
                                                 <mat-form-field appearance="outline">
                                                     <mat-label>Phone number</mat-label>
-                                                    <input matInput type="figure" formControlName="phonenumber" placeholder="">
+                                                    <input matInput type="figure" formControlName="phonenumber" placeholder=""(click)="removeErr()">                                                    <mat-hint *ngIf="companyPhoneError == true" style="color: red">Company Phonenumber Entered is in Use <br><br></mat-hint>
+                                                    <mat-hint *ngIf="userPhoneError == true" style="color: red">Personal Phonenumber Entered is in Use <br><br></mat-hint>
                                                 </mat-form-field>
                                             </div>
                                         </div>
                                         <mat-form-field appearance="outline">
                                             <mat-label>Email Address</mat-label>
-                                            <input matInput type="email" formControlName="personalemailaddress" placeholder="" email="true">
+                                            <input matInput type="email" formControlName="personalemailaddress" placeholder="" email="true" (click)="removeErr()">
+                                            <mat-hint *ngIf="userEmailError == true" style="color: red">Personal Email Entered is in Use <br><br></mat-hint>
                                         </mat-form-field>
                                         <mat-form-field appearance="outline">
                                             <mat-label>Password</mat-label>
                                             <input matInput [type]="hidePasswordBool" formControlName="password" placeholder="">
                                             <mat-icon matSuffix (click)="hidepass()" style="cursor: pointer;">remove_red_eye</mat-icon>
-                                        </mat-form-field>
+                                            <mat-hint>
+                                                Password must be 6 characters or more <br>
+                                                Minimum of 1 Upper case <br>
+                                                Minimum of 1 lowercase <br>
+                                                Minimum of 1 Numeric Number <br>
+                                                Minimum of 1 Special Character e.g (! @ # $ &)<br>
+                                                </mat-hint>
 
+                                        </mat-form-field>
+                                        <br><br><br>
 
                                     </div>
                                     <div class="wizard-step-btn-margin">
@@ -622,7 +635,6 @@
     
 
 </section>
-
 
 <section style="position:relative;
 bottom: 0px; width: 100%;">
